@@ -4,7 +4,11 @@ import ChatBar from "./ChatBar";
 import Messages from "./Messages";
 
 const Chat = () => {
-    const [messages, setMessages] = useState<IMessage[]>([])
+    const [messages, setMessages] = useState<Required<IMessage>[]>([])
+
+    const sendMessage = (message: Required<IMessage>) => {
+        console.log(message)
+    }
 
     const addMessage = (message: string) => {
         if (!message) return
@@ -12,11 +16,7 @@ const Chat = () => {
             message
         })
         setMessages([...messages, fullMessage])
-        // Test
-        // setMessages([...messages, fullMessage, {
-        //     ...fullMessage,
-        //    sender: 'Luc' 
-        // }])
+        sendMessage(fullMessage)
     }
 
     return <div>

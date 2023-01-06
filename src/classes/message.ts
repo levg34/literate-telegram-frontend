@@ -4,7 +4,7 @@ export interface IMessage {
     time?: Date
 }
 
-export class Message implements IMessage {
+export class Message implements Required<IMessage> {
     message: string
     sender: string
     time: Date
