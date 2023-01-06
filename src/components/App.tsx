@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
+import Chat from './Chat'
 
 function App() {
   return <React.Fragment>
-    App placeholder
+    <Chat/>
   </React.Fragment>
 }
 
