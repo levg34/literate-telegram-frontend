@@ -7,7 +7,7 @@ import Messages from './Messages'
 const Chat = () => {
     const [messages, setMessages] = useState<Required<IMessage>[]>([])
 
-    const { sendMessage } = useWebSocket('wss://echo-websocket.hoppscotch.io', {
+    const { sendMessage } = useWebSocket('wss://ws.postman-echo.com/raw', {
         onMessage: event => {
             console.log(event.data)
             setMessages([...messages, new Message({
