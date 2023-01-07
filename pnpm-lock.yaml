@@ -9,6 +9,7 @@ specifiers:
   '@vitejs/plugin-react': ^3.0.0
   react: ^18.2.0
   react-dom: ^18.2.0
+  react-use-websocket: ^4.2.0
   typescript: ^4.9.3
   vite: ^4.0.0
 
@@ -18,6 +19,7 @@ dependencies:
   '@mui/material': 5.11.3_lskpmcsdi7ipu6qpuapyu56ihm
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-use-websocket: 4.2.0_biqbaboplfbrettd7655fr4n2y
 
 devDependencies:
   '@types/react': 18.0.26
@@ -1183,6 +1185,16 @@ packages:
       dom-helpers: 5.2.1
       loose-envify: 1.4.0
       prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /react-use-websocket/4.2.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-ZovaTlc/tWX6a590fi3kMWImhyoWj46BWJWvO5oucZJzRnVVhYtes2D9g+5MKXjSdR7Es3456hB89v4/1pcBKg==}
+    peerDependencies:
+      react: '>= 18.0.0'
+      react-dom: '>= 18.0.0'
+    dependencies:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
