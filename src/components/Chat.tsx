@@ -1,19 +1,22 @@
 import { useState } from 'react'
 import useWebSocket from 'react-use-websocket'
-import { IMessage, Message } from '../classes/message'
+import { IMessage, IMessageJSON, Message } from '../classes/message'
 import ChatBar from './ChatBar'
 import Messages from './Messages'
 
 const Chat = () => {
     const [messages, setMessages] = useState<Required<IMessage>[]>([])
 
-    const { sendMessage } = useWebSocket('wss://ws.postman-echo.com/raw', {
+    const { sendJsonMessage } = useWebSocket('wss://ws.postman-echo.com/raw', {
         onMessage: event => {
-            console.log(event.data)
-            setMessages([...messages, new Message({
-                message: event.data,
-                sender: 'Server'
-            })])
+            const received: IMessageJSON = JSON.parse(event.data)
+            const corrected = {
+                ...received,
+                sender: 'Server',
+                time: new Date(received.time)
+            }
+            console.log(corrected)
+            setMessages([...messages, new Message(corrected)])
         }
     })
 
@@ -23,7 +26,7 @@ const Chat = () => {
             message
         })
         setMessages([...messages, fullMessage])
-        sendMessage(fullMessage.message)
+        sendJsonMessage(fullMessage.toJSON())
     }
 
     return <div>
