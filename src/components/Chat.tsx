@@ -7,7 +7,7 @@ import Messages from './Messages'
 const Chat = () => {
     const [messages, setMessages] = useState<Required<IMessage>[]>([])
 
-    const { sendJsonMessage } = useWebSocket('wss://ws.postman-echo.com/raw', {
+    const { sendJsonMessage } = useWebSocket(import.meta.env.VITE_WS_URL, {
         onMessage: event => {
             const received: IMessageJSON = JSON.parse(event.data)
             const corrected = {
