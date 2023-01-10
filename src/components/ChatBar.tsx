@@ -8,8 +8,8 @@ type Props = {
 const ChatBar = ({addMessage}: Props) => {
     const [field, setField] = useState<string>('')
 
-    const pressEnter = (e: { code: string; }) => {
-        if (e.code !== 'Enter') return
+    const pressEnter = (e: { [x: string]: any; code: string; }) => {
+        if (e.code !== 'Enter' && e.key !== 'Enter') return
         addMessage(field)
         setField('')
     }
