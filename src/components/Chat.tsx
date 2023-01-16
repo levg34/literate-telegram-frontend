@@ -12,7 +12,7 @@ const Chat = () => {
             const received: IMessageJSON = JSON.parse(event.data)
             const corrected = {
                 ...received,
-                sender: received.sender ?? 'Server',
+                sender: received.sender ? (received.sender !== Message.ME ? received.sender : 'Unknown') : 'Server',
                 time: new Date(received.time)
             }
             console.log(corrected)
