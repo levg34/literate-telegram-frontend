@@ -7,7 +7,7 @@ import Messages from './Messages'
 const Chat = () => {
     const [messages, setMessages] = useState<Required<IMessage>[]>([])
 
-    const { sendJsonMessage } = useWebSocket(import.meta.env.VITE_WS_URL, {
+    const { sendJsonMessage } = useWebSocket(import.meta.env.VITE_WS_URL ?? 'ws://localhost:8080', {
         onMessage: event => {
             const received: IMessageJSON = JSON.parse(event.data)
             const corrected = {
