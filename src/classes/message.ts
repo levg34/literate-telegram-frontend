@@ -9,6 +9,7 @@ export interface IMessageJSON {
     message: string
     sender: string
     time: string
+    color?: string
 }
 
 export class Message implements Required<IMessage> {
@@ -25,7 +26,7 @@ export class Message implements Required<IMessage> {
         this.color = message.color ?? ''
     }
 
-    toJSON(): Required<IMessageJSON> {
+    toJSON(): IMessageJSON {
         const message: IMessageJSON = {
             ...this,
             time: this.time.toISOString()

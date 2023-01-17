@@ -3,14 +3,15 @@ import { IMessage } from "../classes/message"
 import MessageBox from "./MessageBox"
 
 type Props = {
-    messages: IMessage[]
+    messages: IMessage[],
+    color?: string
 }
 
-const MessageList = ({messages}: Props) => <Grid2 container spacing={2}>
-    {messages.map((m,i) => <MessageBox key={i} message={m}/>)}
+const MessageList = ({messages, color}: Props) => <Grid2 container spacing={2}>
+    {messages.map((m,i) => <MessageBox key={i} message={m} color={color}/>)}
 </Grid2>
 
-const Messages = ({messages}: Props) => messages.length ? <MessageList messages={messages}/> : <div>
+const Messages = ({messages, color}: Props) => messages.length ? <MessageList messages={messages} color={color}/> : <div>
     No new messages.
 </div>
 

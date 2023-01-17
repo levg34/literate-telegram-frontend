@@ -1,17 +1,33 @@
-
 import Card from "@mui/material/Card"
 import Grid2 from "@mui/material/Unstable_Grid2"
 import React from "react"
 import { IMessage, Message } from "../classes/message"
 
 type Props = {
-    message: IMessage
+    message: IMessage,
+    color?: string
 }
 
-const MessageBox = ({message}: Props) => <React.Fragment>
+function getStyle(message: IMessage, color?: string) {
+    let backgroundColor
+
+    if (message.sender === 'Server') {
+        backgroundColor = '#D3D3D3'
+    } else if (message.sender === Message.ME && color) {
+        backgroundColor = color
+    } else if (message.color) {
+        backgroundColor = message.color
+    } else {
+        return
+    }
+
+    return { backgroundColor }
+}
+
+const MessageBox = ({message, color}: Props) => <React.Fragment>
     {message.sender === Message.ME && <Grid2 lg={8} md={6} xs={4}></Grid2>}
     <Grid2 lg={4} md={6} xs={8}>
-        <Card style={message.sender === 'Server' ? {backgroundColor: '#D3D3D3'} : (message.color ? {backgroundColor: message.color} : undefined)}>
+        <Card style={getStyle(message, color)}>
             {message.message}
         </Card>
     </Grid2>
