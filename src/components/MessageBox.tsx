@@ -11,7 +11,7 @@ type Props = {
 const MessageBox = ({message}: Props) => <React.Fragment>
     {message.sender === Message.ME && <Grid2 lg={8} md={6} xs={4}></Grid2>}
     <Grid2 lg={4} md={6} xs={8}>
-        <Card style={message.sender === 'Server' ? {backgroundColor: '#D3D3D3'} : undefined}>
+        <Card style={message.sender === 'Server' ? {backgroundColor: '#D3D3D3'} : (message.color ? {backgroundColor: message.color} : undefined)}>
             {message.message}
         </Card>
     </Grid2>

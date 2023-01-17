@@ -1,4 +1,5 @@
 export interface IMessage {
+    color?: string
     message: string
     sender?: string
     time?: Date
@@ -15,11 +16,13 @@ export class Message implements Required<IMessage> {
     sender: string
     time: Date
     static ME = 'Me'
+    color: string
 
     constructor(message: IMessage) {
         this.message = message.message
         this.sender = message.sender ?? Message.ME
         this.time = message.time ?? new Date()
+        this.color = message.color ?? ''
     }
 
     toJSON(): Required<IMessageJSON> {
