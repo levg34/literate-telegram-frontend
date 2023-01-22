@@ -3,9 +3,10 @@ import { SetStateAction, useState } from "react";
 
 type Props = {
     addMessage: (message: string) => void
+    enabled: boolean
 }
 
-const ChatBar = ({addMessage}: Props) => {
+const ChatBar = ({addMessage, enabled}: Props) => {
     const [field, setField] = useState<string>('')
 
     const pressEnter = (e: { [x: string]: any; code: string; }) => {
@@ -15,7 +16,7 @@ const ChatBar = ({addMessage}: Props) => {
     }
 
     return <div>
-        <TextField fullWidth label="Message" variant="outlined" value={field} onChange={(e: { target: { value: SetStateAction<string>; }; }) => setField(e.target.value)} onKeyPress={pressEnter}/>
+        <TextField fullWidth label="Message" variant="outlined" value={field} onChange={(e: { target: { value: SetStateAction<string>; }; }) => setField(e.target.value)} onKeyPress={pressEnter} disabled={!enabled}/>
     </div>
 }
 
