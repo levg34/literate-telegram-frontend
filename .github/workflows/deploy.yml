@@ -35,7 +35,7 @@ jobs:
         run: |
           export VITE_WS_URL=${{secrets.VITE_WS_URL}}
           pnpm install
-          pnpm build --base '/literate-telegram-frontend/'
+          pnpm build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
