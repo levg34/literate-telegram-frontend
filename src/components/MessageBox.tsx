@@ -2,6 +2,7 @@ import Card from "@mui/material/Card"
 import Grid2 from "@mui/material/Unstable_Grid2"
 import React from "react"
 import { IMessage, Message } from "../classes/message"
+import Linkify from 'react-linkify'
 
 type Props = {
     message: IMessage,
@@ -28,7 +29,9 @@ const MessageBox = ({message, color}: Props) => <React.Fragment>
     {message.sender === Message.ME && <Grid2 lg={8} md={6} xs={4}></Grid2>}
     <Grid2 lg={4} md={6} xs={8}>
         <Card style={getStyle(message, color)}>
-            {message.message}
+            <Linkify componentDecorator={(href,text,key) => <a href={href} key={key} target="_blank">
+                {text}
+            </a>}>{message.message}</Linkify>
         </Card>
     </Grid2>
     {message.sender !== Message.ME && <Grid2 lg={8} md={6} xs={4}></Grid2>}
