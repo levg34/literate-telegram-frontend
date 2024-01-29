@@ -13,11 +13,11 @@ const Chat = () => {
     const [connected, setConnected] = useState<boolean>(false)
 
     const { sendJsonMessage } = useWebSocket(import.meta.env.VITE_WS_URL ?? 'ws://localhost:8080', {
-        onOpen: event => {
+        onOpen: (event) => {
             console.log(event)
             setConnected(true)
         },
-        onMessage: event => {
+        onMessage: (event) => {
             const received: IMessageJSON = JSON.parse(event.data)
             if (!color && received.sender === 'Server' && received.message.startsWith('Hello!')) {
                 setColor(received.color)
@@ -28,12 +28,12 @@ const Chat = () => {
                 time: new Date(received.time)
             }
             console.log(corrected)
-            setMessages([...messages, new Message(corrected)])
+            setMessages((oldMessages) => [...oldMessages, new Message(corrected)])
         },
-        onClose: event => {
+        onClose: (event) => {
             console.log(event)
             setConnected(false)
-        },
+        }
     })
 
     const addMessage = (message: string) => {
@@ -45,14 +45,16 @@ const Chat = () => {
         sendJsonMessage(fullMessage.toJSON() as unknown as JsonObject)
     }
 
-    return <div>
-        <Backdrop open={!connected}>
-            <CircularProgress color="inherit" onClick={() => location.reload()}/>
-        </Backdrop>
-        <Messages messages={messages} color={color}/>
-        <br/>
-        <ChatBar addMessage={addMessage} enabled={connected}/>
-    </div>
+    return (
+        <div>
+            <Backdrop open={!connected}>
+                <CircularProgress color="inherit" onClick={() => location.reload()} />
+            </Backdrop>
+            <Messages messages={messages} color={color} />
+            <br />
+            <ChatBar addMessage={addMessage} enabled={connected} />
+        </div>
+    )
 }
 
 export default Chat
